@@ -1,11 +1,11 @@
 def get_word_count(text_input: str) -> int:
-    words_from_text: list[str] = text_input.split()
-    num_words: int = len(words_from_text)
+    words_from_text = text_input.split()
+    num_words = len(words_from_text)
 
     return num_words
 
-def get_char_count(text_input: str) -> dict[str:int]:
-    char_count: dict[str:int] = {}
+def get_char_count(text_input: str) -> dict[str, int]:
+    char_count: dict[str, int] = {}
 
     for char in text_input.lower():
         if char not in char_count:
@@ -15,10 +15,10 @@ def get_char_count(text_input: str) -> dict[str:int]:
 
     return char_count
 
-def sort_on(char_tuple: tuple[str,int]) -> int:
+def sort_on(char_tuple: tuple[str, int]) -> int:
     return char_tuple[1]
 
-def chars_dict_to_sorted_list(char_dict: dict[str:int]) -> list[tuple[str, int]]:
+def chars_dict_to_sorted_list(char_dict: dict[str, int]) -> list[tuple[str, int]]:
     char_list: list[tuple[str, int]] = []
 
     for char in char_dict:
