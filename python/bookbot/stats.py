@@ -15,16 +15,14 @@ def get_char_count(text_input: str) -> dict[str:int]:
 
     return char_count
 
-def sort_on(char: tuple[str,int]) -> int:
-    return char[1]
+def sort_on(char_tuple: tuple[str,int]) -> int:
+    return char_tuple[1]
 
 def chars_dict_to_sorted_list(char_dict: dict[str:int]) -> list[tuple[str, int]]:
-    char_list = []
+    char_list: list[tuple[str, int]] = []
 
     for char in char_dict:
         char_tuple = char, char_dict[char]
         char_list.append(char_tuple)
 
-    sorted_char_list = sorted(char_list, reverse=True, key=sort_on)
-
-    return sorted_char_list
+    return sorted(char_list, reverse=True, key=sort_on)

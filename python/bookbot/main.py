@@ -6,14 +6,11 @@ def get_book_text(file_path: str) -> str:
     
     return file_contents
 
-# def main(target_path):
-#     return get_book_text(target_path)
-
 def main(target_path: str):
     book: str = get_book_text(target_path)
     num_words: int = get_word_count(book)
     chars_dict: dict[str:int] = get_char_count(book)
-    sorted_chars_list = chars_dict_to_sorted_list(chars_dict)
+    sorted_chars_list: list[tuple[str, int]] = chars_dict_to_sorted_list(chars_dict)
 
     print(f"Found {num_words} total words")
 
