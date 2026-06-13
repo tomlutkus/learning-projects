@@ -16,17 +16,16 @@ Leap year rules with examples
 
 def check_if_leap_year(year):
 
+    if year % 400 == 0:
+        return True
+    if year % 100 == 0:
+        return False
     if year % 4 == 0:
-        if year % 100 == 0 and year % 400 == 0:
-            return True
-        elif year % 100 == 0:
-            return False
-
         return True
 
-keep_going = True
+    return False
 
-while keep_going:
+while True:
 
     year = int(input("Enter the year to check if leap: "))
     is_leap = check_if_leap_year(year)
@@ -39,5 +38,5 @@ while keep_going:
     try_again = (input("Do you want to check another year? (y/n)\n> "))
 
     if try_again == "n":
-        keep_going = False
+        break
     
