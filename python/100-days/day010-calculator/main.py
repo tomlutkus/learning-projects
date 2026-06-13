@@ -23,12 +23,18 @@ def main():
             first_number = float(input("What's the first number? "))
         else:
             first_number = result
-        
-        print("+\n-\n*\n/")
-        operation = input("Pick an operation: ")
+        operations = ["+", "-", "*", "/"]
+        for operation in operations:
+            print(f"{operation}")
+
+        chosen_operation = input("Pick an operation: ")
+        if chosen_operation not in operations:
+            input("Invalid operation. Press <ENTER> to restart program.")
+            new_calculation = True
+            continue
         second_number = float(input("What's the second number? "))
 
-        result = calculator(first_number, second_number, operation)
+        result = calculator(first_number, second_number, chosen_operation)
         print(f"{first_number} {operation} {second_number} = {result}")
 
         use_result = input(
