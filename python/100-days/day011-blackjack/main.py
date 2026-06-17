@@ -24,7 +24,6 @@ def computer_play(computer_score, computer_cards):
 
 def player_play(player_score, player_cards):
     player_round = True
-
     while player_round:
         ask_another_card = input(f"Type 'y' to get another card, type 'n' to pass: ")
         if ask_another_card == 'y':
@@ -59,33 +58,32 @@ def determine_victor():
     print(f"Your cards: {player_cards}, current score: {player_score}")
     print(f"Computer's first card: {computer_cards[0]}")
     player_score, player_cards = player_play(player_score, player_cards)
-    if player_score > 21:
-        message = "You went over, you lose!"
-    else:
+    if player_score <= 21:
         computer_score, computer_cards = computer_play(computer_score, computer_cards)
-        if computer_score > 21:
+        player_blackjack = len(player_cards) == 2 and player_score == 21
+        computer_blackjack = len(computer_cards) == 2 and computer_score == 21
+        if player_blackjack and not computer_blackjack:
+                message = "Blackjack! You win!"
+        elif computer_blackjack and not player_blackjack:
+                message = "Computer has blackjack, you lose!"
+        elif computer_score > 21:
             message = f"The computer went over, you win!"
         elif player_score > computer_score:
             message =  "Your score beats the computer's, you win!"
         elif player_score == computer_score:
-            player_blackjack = len(player_cards) == 2 and player_score == 21
-            computer_blackjack = len(computer_cards) == 2 and computer_score == 21
-            if player_blackjack and not computer_blackjack:
-                message = "Blackjack! You win!"
-            elif computer_blackjack and not player_blackjack:
-                message = "Computer has blackjack, you lose!"
-            else:
-                message = "It's a draw!"
+            message = "It's a draw!"
         else:
             message = "The computer's score beats yours, you lose!"
+    else:
+        message = "You went over, you lose!"
     return message, player_cards, computer_cards
 
 def main():
-    play_game = True
-    while play_game:
+    game_over = False
+    while not game_over:
         ask_new_game = input("Do you want to play a game of blackjack? (y/n): ")
         if ask_new_game != "y":
-            play_game = False
+            game_over = True
             break
         system("clear")
         print(logo)
