@@ -40,10 +40,9 @@ def player_play(player_score, player_cards):
 def deal():
     player_cards = []
     computer_cards = []
-    draw_card(player_cards)
-    draw_card(player_cards)
-    draw_card(computer_cards)
-    draw_card(computer_cards)
+    for _ in range(2):
+        draw_card(player_cards)
+        draw_card(computer_cards)
     return player_cards, computer_cards
 
 def final_hand(player_cards, computer_cards):
@@ -69,10 +68,12 @@ def determine_victor():
         elif player_score > computer_score:
             message =  "Your score beats the computer's, you win!"
         elif player_score == computer_score:
-            if 11 in player_cards and 11 not in computer_cards:
-                message = "Same score, but your ace wins it!"
-            elif 11 not in player_cards and 11 in computer_cards:
-                message = "Same score, but the computer's ace wins it, you lose!"
+            player_blackjack = len(player_cards) == 2 and player_score == 21
+            computer_blackjack = len(computer_cards) == 2 and computer_score == 21
+            if player_blackjack and not computer_blackjack:
+                message = "Blackjack! You win!"
+            elif computer_blackjack and not player_blackjack:
+                message = "Computer has blackjack, you lose!"
             else:
                 message = "It's a draw!"
         else:
