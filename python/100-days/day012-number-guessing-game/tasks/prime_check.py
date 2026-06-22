@@ -1,6 +1,11 @@
+"""
+prime_check.py - Check if a number is prime.
+Author: Thomas Lutkus
+"""
+
 import sys
 
-def check_if_prime(number):
+def check_if_prime(number: int) -> bool:
     if number < 2:
         return False
     if number == 2:
@@ -12,7 +17,7 @@ def check_if_prime(number):
     
     return True
 
-def main(number_input):
+def main(number_input: int):
     try:
         number = int(number_input)
     except ValueError:
