@@ -16,7 +16,8 @@ def main(number_input):
     try:
         number = int(number_input)
     except ValueError:
-        raise ValueError("ERROR: Your input must be a positive integer.")
+        print("ERROR: Your input must be a positive integer.")
+        sys.exit(1)
     is_prime = check_if_prime(number)
     if is_prime:
         print(f"The number {number} is a prime number.")
