@@ -25,7 +25,11 @@ def main(number_input):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python3 prime_check.py <NUMBER>")
+    if len(sys.argv) == 1:
+        number = input("Write an integer to test if prime:\n> ")
+    elif len(sys.argv) == 2:
+        number = sys.argv[1]
+    else:
+        print("Usage: python3 prime_check.py [NUMBER]")
         sys.exit(1)
-    main(sys.argv[1])
+    main(number)
