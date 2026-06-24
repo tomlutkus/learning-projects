@@ -9,10 +9,16 @@ from random import sample
 from os import system
 
 def fetch_a_b(data_list: list[dict]) -> tuple[dict, dict]:
+    """
+    returns two samples from our list
+    """
     candidate_a, candidate_b = sample(data_list, 2)
     return candidate_a, candidate_b
 
 def check_answer(a: dict, b: dict, user_input: str) -> bool:
+    """
+    checks which candidate wins, then whether user has guessed right
+    """
     if a["follower_count"] > b["follower_count"]:
         winner = "a"
     else:
@@ -22,6 +28,9 @@ def check_answer(a: dict, b: dict, user_input: str) -> bool:
     return False
 
 def user_choice() -> str:
+    """
+    grabs the user's choice as an input
+    """
     while True:
         user_input = input(
                 "Who has more followers? Type 'A' or 'B':\n> "
@@ -31,6 +40,9 @@ def user_choice() -> str:
         print("ERROR: Invalid input.")
 
 def display(a: dict, b: dict):
+    """
+    displays the current round of candidates
+    """
     name_a = a["name"]
     desc_a = a["description"]
     country_a = a["country"]
