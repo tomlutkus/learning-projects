@@ -9,11 +9,11 @@ from random import sample
 from os import system
 
 # Fetch 2 entries from data
-def fetch_a_b(list: list[dict]) -> tuple[dict]:
-    candidate_a, candidate_b = sample(data, 2)
+def fetch_a_b(data_list: list[dict]) -> tuple[dict, dict]:
+    candidate_a, candidate_b = sample(data_list, 2)
     return candidate_a, candidate_b
 
-def check_answer(a: dict, b: dict, user_input: str) -> str:
+def check_answer(a: dict, b: dict, user_input: str) -> bool:
     if a["follower_count"] > b["follower_count"]:
         winner = "a"
     else:
