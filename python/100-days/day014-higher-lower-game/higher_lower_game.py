@@ -8,7 +8,6 @@ from art import logo, vs
 from random import sample
 from os import system
 
-# Fetch 2 entries from data
 def fetch_a_b(data_list: list[dict]) -> tuple[dict, dict]:
     candidate_a, candidate_b = sample(data_list, 2)
     return candidate_a, candidate_b
