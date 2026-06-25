@@ -31,8 +31,7 @@ def check_resources(user_choice, menu, resources) -> tuple[bool, list[str]]:
             enough_resources = False
             insufficient_resources.append(ingredient)            
     
-    insufficient_string = ", ".join(insufficient_resources)
-    return enough_resources, insufficient_string
+    return enough_resources, insufficient_resources
 
 def process_coins() -> float:
         inserted_coins = {
@@ -65,58 +64,66 @@ def process_coins() -> float:
                 total += amount * 0.01
         return total
 
-
-def process_transaction(money_provided, user_choice, menu) -> tuple[
-    bool, float, float]:
+def process_transaction(money_provided, user_choice, menu):
         if money_provided < menu[user_choice]["cost"]:
             return False, None, None
-        transaction_ok = True
         add_money = menu[user_choice]["cost"]
         refund = money_provided - menu[user_choice]["cost"]
         return True, add_money, refund
 
+def make_coffee(user_choice, menu, resources):
+    ingredients = menu[user_choice]["ingredients"]
+    for ingredient, amount in ingredients.items():
+        resources[ingredient] -= amount
+    print(f"Here is your {user_choice}. Enjoy!")
 
-def make_coffee(user_choice):
-    print(f"{user_choice} served.")
+def handle_order(user_choice, menu, resources):
+    enough_resources, insufficient_resources = check_resources(
+                user_choice, menu, resources
+                )
+    if not enough_resources:
+        print("Sorry, there is not enough:")
+        for resource in insufficient_resources:
+            print(f"- {resource}")
+        print("Please, choose another product.\n")
+        input("Press ENTER to continue.")
+        return 0
+    cost = menu[user_choice]["cost"]
+    print(f"{user_choice} costs ${cost}.")
+    print("Please insert coins.")
+    money_provided = process_coins()
+    transaction_ok, add_money, refund = process_transaction(
+        money_provided, user_choice, menu
+        )
+    if transaction_ok:
+        if refund == 0.00:
+            print("You paid the exact amount, no change.\n")
+        else:
+            print(f"Here is ${refund:.2f} change.\n")
+        make_coffee(user_choice, menu, resources)
+        input("Press ENTER to conclude order.")
+        return add_money
+    else:
+        print("Sorry, that's not enough money. Money refunded.\n")
+        input("Press ENTER to try ordering again.")
+        return 0
 
 def main():
-    powered_on = True
     money_stored = 0.00
-
+    powered_on = True
     while powered_on:
         system('clear')
-        # Prompt the user by asking "what would you like? (espresso, late, cappuccino)
         user_choice = selection_menu()
-
         if user_choice == "off":
-            # Turn off the Coffee Machine by entering “off” to the prompt
-            powered_on = False
+            print("Administrator: power off requested, powering off...\n")
             exit(0)
         elif user_choice == "report":
-            # Print report of resources when user enters "report" to the prompt
+            print("Administrator: report requested, issuing report...\n")
             issue_report(resources, money_stored)
+            input("Press ENTER to continue.")
         elif user_choice in ("espresso", "latte", "cappuccino"):
-            enough_resources, insufficient = check_resources(
-                user_choice, MENU, resources
-                )
-            # Check resources sufficient
-            if not enough_resources:
-                print(f"Sorry, there is not enough {insufficient}")
-                continue
-            print("Please insert coins.")
-            money_provided = process_coins()
-            transaction_ok, add_money, refund = process_transaction(
-                money_provided, user_choice, MENU
-                )
-            if transaction_ok:
-                if refund == 0.00:
-                    print("You paid the exact amount, no change.")
-                else:
-                    print(f"Here is ${refund:.2f} change.")
-                make_coffee(user_choice)
-            else:
-                print("Sorry, that's not enough money. Money refunded.")
-            input("Press any key to conclude order.")
+            add_money = handle_order(user_choice, MENU, resources)
+            money_stored += add_money
 
         
 if __name__ == "__main__":
