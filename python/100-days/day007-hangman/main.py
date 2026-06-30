@@ -1,6 +1,7 @@
 import random
 from art import stages, logo
 from words import word_list
+from os import system
 
 lives = 6
 
@@ -18,6 +19,7 @@ game_over = False
 correct_letters = []
 
 while not game_over:
+ 
     print(f"****************************{lives}/6 LIVES LEFT****************************")
     guess = input("Guess a letter: ").lower()
     if guess in correct_letters:
