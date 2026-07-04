@@ -7,13 +7,14 @@ class Question:
         return f"{self.text}: {self.answer}"
 
 class QuestionBank:
-    def __init__(self, question_data):
-        self.question_list = []
-        self.fetch_questions(question_data)
+    def __init__(self, questions_dict):
+        self.questions_dict = questions_dict
+        self.questions = []
+        self.fetch_questions()
 
-    def fetch_questions(self, question_data) -> None:
-        for question in question_data:
+    def fetch_questions(self) -> None:
+        for question in self.questions_dict:
             q_text = question["text"]
             q_answer = question["answer"]
             question = Question(q_text, q_answer)
-            self.question_list.append(question)
+            self.questions.append(question)
