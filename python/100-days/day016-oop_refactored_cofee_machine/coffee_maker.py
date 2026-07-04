@@ -21,6 +21,7 @@ class CoffeeMaker:
             if drink.ingredients[item] > self.resources[item]:
                 print(f"Sorry there is not enough {item}.")
                 can_make = False
+                input("Press ENTER to continue")
         return can_make
 
     def make_coffee(self, order: dict) -> None:
@@ -28,3 +29,4 @@ class CoffeeMaker:
         for item in order.ingredients:
             self.resources[item] -= order.ingredients[item]
         print(f"Here is your {order.name} ☕️. Enjoy!")
+        input("Press ENTER to continue")
