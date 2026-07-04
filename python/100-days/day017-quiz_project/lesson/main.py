@@ -1,8 +1,3 @@
-"""
-userdb.py - Practicing some OOP in Python
-Author: Thomas Lutkus
-"""
-
 USERS = {
     "001": "thomas",
     "002": "angela",
@@ -48,5 +43,17 @@ user_db = UserList()
 search_string = input("Type username to be found: ")
 matching_users = user_db.get_user(search_string)
 
-for user in matching_users:
-    print(user)
+for line in matching_users:
+    print(line)
+
+# for user in user_db.user_list:
+#     print(user.username)
+
+
+
+# user_1 = User("001", "thomas")
+# user_2 = User("002", "angela")
+
+# print(f"ID: {user_1.id}\nUser: {user_1.username}")
+
+
