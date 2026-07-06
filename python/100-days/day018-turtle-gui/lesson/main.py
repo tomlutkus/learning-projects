@@ -1,10 +1,14 @@
-from turtle import Turtle, Screen
+# from turtle import Turtle, Screen
+import turtle as t
 
-timmy_the_turtle = Turtle()
-timmy_the_turtle.shape("turtle")
+tim = t.Turtle()
+tim.shape("turtle")
+tim.color("black", "red")
+for _ in range(4):
+    tim.forward(100)
+    tim.right(90)
 
 
-
-my_screen = Screen()
+my_screen = t.Screen()
 print(my_screen.canvheight)
 my_screen.exitonclick()
