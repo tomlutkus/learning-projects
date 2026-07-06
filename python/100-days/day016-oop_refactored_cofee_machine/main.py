@@ -8,17 +8,16 @@ from coffee_maker import CoffeeMaker
 from money_machine import MoneyMachine
 from os import system
 
+
 def main() -> None:
     powered_on = True
     while powered_on:
         # Start fresh on a new order
-        system('clear')
+        system("clear")
         system_menu = Menu()
         # Prompt user with the available menu choices
         menu_options = system_menu.get_items()
-        selection: str = input(
-                f"What would you like? ({menu_options})\n> "
-            )
+        selection: str = input(f"What would you like? ({menu_options})\n> ")
         # Turn off the Coffee Machine by entering “off” to the prompt
         if selection == "off":
             print("Powering off...")

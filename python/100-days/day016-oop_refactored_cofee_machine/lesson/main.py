@@ -24,5 +24,4 @@ my_table.add_rows(
 my_table.align = "l"
 
 
-
 print(my_table)

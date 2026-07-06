@@ -1,5 +1,9 @@
+from menu import MenuItem
+
+
 class CoffeeMaker:
     """Models the machine that makes the coffee"""
+
     def __init__(self):
         self.resources = {
             "water": 300,
@@ -13,7 +17,7 @@ class CoffeeMaker:
         print(f"Milk: {self.resources['milk']}ml")
         print(f"Coffee: {self.resources['coffee']}g")
 
-    def is_resource_sufficient(self, drink: dict) -> bool:
+    def is_resource_sufficient(self, drink: MenuItem) -> bool:
         """Returns True when order can be made, False if ingredients
         are insufficient."""
         can_make = True
@@ -24,7 +28,7 @@ class CoffeeMaker:
                 input("Press ENTER to continue")
         return can_make
 
-    def make_coffee(self, order: dict) -> None:
+    def make_coffee(self, order: MenuItem) -> None:
         """Deducts the required ingredients from the resources."""
         for item in order.ingredients:
             self.resources[item] -= order.ingredients[item]

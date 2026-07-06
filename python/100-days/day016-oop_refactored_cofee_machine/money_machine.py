@@ -1,12 +1,7 @@
 class MoneyMachine:
     CURRENCY = "$"
 
-    COIN_VALUES = {
-        "quarters": 0.25,
-        "dimes": 0.10,
-        "nickles": 0.05,
-        "pennies": 0.01
-    }
+    COIN_VALUES = {"quarters": 0.25, "dimes": 0.10, "nickles": 0.05, "pennies": 0.01}
 
     def __init__(self):
         self.profit = 0
@@ -15,12 +10,14 @@ class MoneyMachine:
     def report(self) -> None:
         """Prints the current profit"""
         print(f"Money: {self.CURRENCY}{self.profit}")
-    
+
     def process_coins(self, cost) -> float:
         """Returns the total calculated from coins inserted."""
         print(f"Please insert coins. Your order costs {cost}")
         for coin in self.COIN_VALUES:
-            self.money_received += int(input(f"How many {coin}? ")) * self.COIN_VALUES[coin]
+            self.money_received += (
+                int(input(f"How many {coin}? ")) * self.COIN_VALUES[coin]
+            )
         return self.money_received
 
     def make_payment(self, cost: float) -> bool:
