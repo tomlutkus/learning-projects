@@ -10,14 +10,15 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     screen.fill("black")
+    clock = pygame.time.Clock()
 
     while True:
         log_state()
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
 
+        dt = clock.tick(60) / 1000
     pygame.display.flip()
 
 
