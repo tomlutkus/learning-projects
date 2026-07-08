@@ -1,5 +1,4 @@
 import turtle as t
-import tkinter
 
 screen = t.Screen()
 screen.setup(width=600, height=600)
