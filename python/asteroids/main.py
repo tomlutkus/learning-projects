@@ -14,8 +14,10 @@ def main():
     while True:
         log_state()
 
-        for even in pygame.event.get():
-            pass
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return
+
     pygame.display.flip()
 
 
